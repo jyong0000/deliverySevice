@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+   <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Delivery Service</title>
+
+      <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+      <!-- style css -->
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+      <!-- Responsive-->
+      <link rel="stylesheet" th:href="@{/css/responsive.css}">
+      <!-- fevicon -->
+      <link rel="icon" th:href="@{/images/fevicon.png}" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" th:href="@{/css/jquery.mCustomScrollbar.min.css}">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" th:href="@{https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css}">
+      <!-- owl stylesheets --> 
+      <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}">
+      <link rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}">
+      <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css}" media="screen">
+      
+      <th:block layout:fragment="css"></th:block>
+</head>
+<body>
+	  <div class="site-wrap">
+	<div th:replace="fragments/header::header"></div>
+	<div layout:fragment="content" class="content"></div>
+	<div th:replace="fragments/footer::footer"></div>
+  </div>
+  
+      <script th:src="@{/js/jquery.min.js}"></script>
+      <script th:src="@{/js/popper.min.js}"></script>
+      <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+      <script th:src="@{/js/jquery-3.0.0.min.js}"></script>
+      <script th:src="@{/js/plugin.js}"></script>
+      <!-- sidebar -->
+      <script th:src="@{/js/jquery.mCustomScrollbar.concat.min.js}"></script>
+      <script th:src="@{/js/custom.js}"></script>   
+      
+      	<th:block layout:fragment="script"></th:block>
+</body>
+</html>
