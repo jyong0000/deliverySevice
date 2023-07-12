@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserController {
 
+	//회원가입 화면
 	@GetMapping(value = "/new")
 	public String userForm(Model model) {
 		return "user/userForm";
