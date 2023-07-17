@@ -5,120 +5,98 @@
 
 <th:block layout:fragment="css">
 	<style>
-@import url(http://weloveiconfonts.com/api/?family=entypo);
-
-@import url(https://fonts.googleapis.com/css?family=Roboto);
-/* zocial */
-[class*="entypo-"]:before {
-	font-family: 'entypo', sans-serif;
-}
-
-*, *:before, *:after {
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-h2 {
-	color: rgba(255, 255, 255, .8);
-	margin-left: 12px;
-}
-
-body {
-	background: #272125;
-	font-family: 'Roboto', sans-serif;
-}
-
-form {
-	position: relative;
-	margin: 50px auto;
-	width: 380px;
-	height: auto;
-}
-
-input {
-	padding: 16px;
-	border-radius: 7px;
-	border: 0px;
-	background: rgba(255, 255, 255, .2);
-	display: block;
-	margin: 15px;
-	width: 300px;
-	color: white;
-	font-size: 18px;
-	height: 54px;
-}
-
-input:focus {
-	outline-color: rgba(0, 0, 0, 0);
-	background: rgba(255, 255, 255, .95);
-	color: #e74c3c;
-}
-
-button {
-	float: right;
-	height: 121px;
-	width: 50px;
-	border: 0px;
-	background: #e74c3c;
-	border-radius: 7px;
-	padding: 10px;
-	color: white;
-	font-size: 22px;
-}
-
-.inputUserIcon {
-	position: absolute;
-	top: 68px;
-	right: 80px;
-	color: white;
-}
-
-.inputPassIcon {
-	position: absolute;
-	top: 136px;
-	right: 80px;
-	color: white;
-}
-
-input::-webkit-input-placeholder {
-	color: white;
-}
-
-input:focus::-webkit-input-placeholder {
-	color: #e74c3c;
-}
-</style>
+	 .error {
+	 	color: #bd2130;
+	 }
+	</style>
 </th:block>
 
-	<div layout:fragment="content">
-		<form action="/users/login" method="post">
-			<h2>
-				<span class="entypo-login"></span> Login
-			</h2>
-			<button class="submit">
-				<span class="entypo-lock"></span>
-			</button>
-			<span class="entypo-user inputUserIcon"> </span> <input type="text"
-				class="user" placeholder="ursername" /> <span
-				class="entypo-key inputPassIcon"> </span> <input type="password"
-				class="pass" placeholder="password" /> <input type="hidden"
-				th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-		</form>
-
+<div layout:fragment="content">
+	<div class="bg-light py-3">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 mb-0">
+					<a href="/">Home</a> <span class="mx-2 mb-0">/</span> 
+					<strong class="text-black">로그인</strong>
+				</div>
+			</div>
+		</div>
 	</div>
-<th:block layout:fragment="script">
-	<script th:inline="javascript">
-		$(".user").focusin(function() {
-			$(".inputUserIcon").css("color", "#e74c3c");
-		}).focusout(function() {
-			$(".inputUserIcon").css("color", "white");
-		});
+	
+		<div class="site-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="h3 mb-3 text-black">로그인</h2>
+					<div class="p-3 p-lg-5 border">
+					<form role="form" action="/users/login" method="post">
+						<div class="form-group row">
+							<div class="col-md-12">
+								<label th:for="email" class="text-black">이메일</label> <input
+									type="email" class="form-control" id="email" name="email"
+									placeholder="이메일을 입력해주세요">
+							</div>
+						</div>
 
-		$(".pass").focusin(function() {
-			$(".inputPassIcon").css("color", "#e74c3c");
-		}).focusout(function() {
-			$(".inputPassIcon").css("color", "white");
+						<div class="form-group row">
+							<div class="col-md-12">
+								<label th:for="password" class="text-black">비밀번호</label> <input
+									type="password" class="form-control" id="password"
+									name="password" placeholder="비밀번호를 입력해주세요">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<p th:if="${loginErrorMsg}" class="error" th:text="${loginErrorMsg}"></p>
+							<label><input type="checkbox" name="id_save" id="id_save" />이메일 기억</label>
+							<div>
+							<button type="submit" class="btn btn-primary mb-3" id="loginbtn">로그인</button>
+							&nbsp;
+							<button type="button" class="btn btn-primary mb-3"
+								onclick="location.href='/users/new'">회원가입</button>							
+							</div>
+						</div>
+						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+					
+<th:block layout:fragment="script">
+	<script type="text/javascript" th:src="@{/js/cookie.js}"></script>
+	<script th:inline="javascript">
+		$(document).ready(function(){
+			var userInputId = getCookie("userInputId"); //쿠키값(이메일주소)을 가져온다.
+			var setCookieYN = getCookie("setCookieYN"); //쿠키값(이메일 저장 여부)을 가져온다.
+			
+			if(setCookieYN == 'Y') { //이메일 저장 여부가 Y면
+				$("#id_save").prop("checked", true); //이메일 저장 체크박스를 체크한다
+				$("#email").val(userInputId); //이메일 input창에는 쿠키에서 가져온 이메일 주소를 넣는다.
+			} else {
+				$("#id_save").prop("checked", false);
+			}
+			
+			
+			//로그인 버튼 클릭시 쿠키에 이메일 저장여부, 이메일 저장
+			$("#loginbtn").click(function(){
+				
+				if($("#id_save").is(":checked")) { //이메일 저장에 체크가 되어있다면
+					var userInputId = $("#email").val(); //이메일 값을 가지고 온다.
+					
+					//쿠키 생성
+					setCookie("userInputId", userInputId, 60); //이메일 저장
+					setCookie("setCookieYN", "Y", 60); //이메일 저장여부 저장
+				} else {
+					//쿠키 삭제
+					deleteCookie("userInputId");
+					deleteCookie("setCookieYN");
+				}
+				
+			});
 		});
 	</script>
 </th:block>
