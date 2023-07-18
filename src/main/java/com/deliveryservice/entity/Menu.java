@@ -1,6 +1,7 @@
 package com.deliveryservice.entity;
 
 import com.deliveryservice.constant.MenuStatus;
+import com.deliveryservice.dto.MenuFormDto;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -28,4 +29,13 @@ public class Menu {
 	
 	@Enumerated(EnumType.STRING)
 	private MenuStatus menuStatus;
+	
+	public void updateMenu(MenuFormDto menuFormDto) {
+		this.menuNm = menuFormDto.getMenuNm();
+		this.price = menuFormDto.getPrice();
+		this.menuDetail = menuFormDto.getMenuDetail();
+		this.menuStatus = menuFormDto.getMenuStatus();
+	}
+	
+	
 }

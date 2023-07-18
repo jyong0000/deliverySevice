@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <div class="header_section" th:fragment="header">
 
@@ -14,31 +15,39 @@
 				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-	
+
+			<div class="search-wrap">
+				<div class="container">
+					<a href="#" class="search-close js-search-close"><span
+						class="icon-close2"></span></a>
+					<form th:action="@{/item/shop}" method="get">
+						<input type="text" name="searchQuery" class="form-control"
+							placeholder="상품검색이 가능합니다.">
+					</form>
+				</div>
+			</div>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active">
-					<a class="nav-link" href="/">Home</a>
-					</li>
-					
-					<li class="nav-item">
-					<a class="nav-link" href="about.html">주문내역</a>
-					</li>
-					
-					<li class="nav-item">
-					<a class="nav-link" href="about.html">장바구니</a>
+					<li class="nav-item active"><a class="nav-link" href="/">Home</a>
 					</li>
 
-					<li class="nav-item">
-					<a class="nav-link" href="/users/login">로그인</a>
-					</li>
-					
-					<li class="nav-item">
-					<a class="nav-link" href="/users/new">회원가입</a>
-					</li>
-					
-					<li class="nav-item"><a class="nav-link" href="#"><i
-							class="fa fa-search" aria-hidden="true"></i></a></li>
+							
+					<li class="nav-item"><a class="nav-link" href="about.html"
+						sec:authorize="isAuthenticated()">주문내역</a></li>
+
+					<li class="nav-item"><a class="nav-link" href="about.html"
+						sec:authorize="isAuthenticated()">장바구니</a></li>
+
+					<li class="nav-item"><a class="nav-link" href="/users/login"
+						sec:authorize="isAnonymous()">로그인</a></li>
+
+					<li class="nav-item"><a class="nav-link" href="/users/logout"
+						sec:authorize="isAuthenticated()">로그아웃</a></li>
+
+					<li class="nav-item"><a class="nav-link" href="/users/new"
+						sec:authorize="isAuthenticated()">회원가입</a></li>
+
+
 				</ul>
 			</div>
 		</nav>
