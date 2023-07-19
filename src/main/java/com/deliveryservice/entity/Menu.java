@@ -11,7 +11,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-public class Menu {
+public class Menu{
 
 	@Id
 	@Column
