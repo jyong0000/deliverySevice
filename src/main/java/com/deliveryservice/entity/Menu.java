@@ -1,5 +1,6 @@
 package com.deliveryservice.entity;
 
+import java.time.LocalDateTime;
 import com.deliveryservice.constant.MenuStatus;
 import com.deliveryservice.dto.MenuFormDto;
 
@@ -11,7 +12,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-public class Menu{
+public class Menu extends BaseEntity{
 
 	@Id
 	@Column

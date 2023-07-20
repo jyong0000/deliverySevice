@@ -8,4 +8,7 @@ import com.deliveryservice.dto.MenuSearchDto;
 import com.deliveryservice.entity.Menu;
 
 public interface MenuRepositoryCustom {
+	Page<Menu> getAdminMenuPage (MenuSearchDto menuSearchDto, Pageable pageable);
+	
+	Page<MenuDto> getMenuPage(MenuSearchDto menuSearchDto, Pageable pageable);
 	}
