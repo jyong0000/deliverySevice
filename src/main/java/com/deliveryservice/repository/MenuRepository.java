@@ -19,13 +19,9 @@ public interface MenuRepository extends JpaRepository<Menu, Long>, MenuRepositor
 	
 	List<Menu> findByPriceBetween(int price1, int price2);
 	
-	List<Menu> findByRegTimeAfter(LocalDateTime regTime);
-	
 	List<Menu> findByMenuStatusNotNull();
 	
 	List<Menu> findByMenuDetailLike(String menuDetail);
-	
-	List<Menu> findByMenuNmorMenuDetail(String menuNm, String menuDetail);
 	
 	List<Menu> findByPriceLessThanOrderByPriceDesc(int price);
 	
