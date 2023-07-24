@@ -25,8 +25,4 @@ public class OrderItem {
 	@ManyToOne
 	@JoinColumn(name = "menu_id")
 	private Menu menu;
-	
-	@ManyToOne
-	@JoinColumn(name = "store_id")
-	private Store store;
 }

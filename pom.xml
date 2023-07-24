@@ -81,7 +81,6 @@
 		<dependency>
     		<groupId>org.apache.commons</groupId>
     		<artifactId>commons-lang3</artifactId>
-   			<version>3.12.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.querydsl</groupId>
@@ -99,7 +98,6 @@
 		<dependency>
        		<groupId>com.querydsl</groupId>
         	<artifactId>querydsl-core</artifactId>
-       		<version>4.4.0</version>
    		</dependency>
 	</dependencies>
 
@@ -125,11 +123,10 @@
 			<executions>
 				<execution>
 					<goals>
-					<goal>process</goal>
+						<goal>process</goal>
 					</goals>
 					<configuration>
-					<outputDirectory>target/generated-sources/java</outputDirectory>
-					<processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
+						<processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
 					</configuration>
 				</execution>
 			</executions>

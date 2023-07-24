@@ -26,23 +26,6 @@
 //		this.queryFactory = new JPAQueryFactory(em);
 //	}
 //	
-//	private BooleanExpression regDtsAfter(String searchDateType) {
-//		LocalDateTime dateTime = LocalDateTime.now();
-//		
-//		if(StringUtils.equals("all", searchDateType) || searchDateType == null) 
-//			return null;
-//		else if(StringUtils.equals("1d", searchDateType))
-//			dateTime = dateTime.minusDays(1); //현재 날짜로부터 1일전
-//		else if(StringUtils.equals("1w", searchDateType))
-//			dateTime = dateTime.minusWeeks(1); //1주일 전
-//		else if(StringUtils.equals("1m", searchDateType))
-//			dateTime = dateTime.minusMonths(1); //1달전
-//		else if(StringUtils.equals("6m", searchDateType))
-//			dateTime = dateTime.minusMonths(6); //6개월전
-//		
-//		return QMenu.menu.regTime.after(dateTime); //Q객체 리턴
-//	}
-//	
 //	private BooleanExpression searchMenuStatusEq(MenuStatus searchMenuStatus) {
 //		return searchMenuStatus == null ? null :
 //			QMenu.menu.menuStatus.eq(searchMenuStatus);
@@ -58,9 +41,9 @@
 //	}
 //	
 //	@Override
-//	public Page<Menu> getAdminPage(MenuSearchDto menuSearchDto, Pageable pageable){
+//	public Page<Menu> getAdminMenuPage(MenuSearchDto menuSearchDto, Pageable pageable){
 //		List<Menu> content = queryFactory
 //							.selectFrom(QMenu.menu)
-//							.where(regDts)
+//						
 //	}
 //} 

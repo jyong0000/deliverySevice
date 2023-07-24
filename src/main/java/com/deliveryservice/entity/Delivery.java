@@ -20,10 +20,6 @@ public class Delivery {
 	private DeliveryStatus deliveryStatus;
 	
 	@ManyToOne
-	@JoinColumn(name = "store_id")
-	private Store store;
-	
-	@ManyToOne
 	@JoinColumn(name = "order_menu_id")
 	private OrderItem orderItem;
 	
