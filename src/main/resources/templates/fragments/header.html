@@ -21,11 +21,9 @@
 					<li class="nav-item active"><a class="nav-link" href="/">Home</a>
 					</li>
 
-					<li class="nav-item"><a class="nav-link" href="/admin/menu/new"
-						sec:authorize="hasAnyAuthority('ROLE_ADMIN')">메뉴등록</a></li>
+					<li class="nav-item"><a class="nav-link" href="/admin/menu/new">메뉴등록</a></li>
 						
-					<li class="nav-item"><a class="nav-link" href="/admin/menus"
-						sec:authorize="hasAnyAuthority('ROLE_ADMIN')">메뉴관리</a></li>
+					<li class="nav-item"><a class="nav-link" href="/admin/menus">메뉴관리</a></li>
 						
 					<li class="nav-item"><a class="nav-link" href="about.html"
 						sec:authorize="isAuthenticated()">주문내역</a></li>
