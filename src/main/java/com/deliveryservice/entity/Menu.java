@@ -1,6 +1,9 @@
 package com.deliveryservice.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.deliveryservice.constant.MenuStatus;
 import com.deliveryservice.dto.MenuFormDto;
 
@@ -30,6 +33,10 @@ public class Menu extends BaseEntity{
 	
 	@Enumerated(EnumType.STRING)
 	private MenuStatus menuStatus;
+	
+	@OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, 
+			orphanRemoval = true, fetch = FetchType.LAZY) //연관관계의 주인 설정(외래키 지정)
+	private List<MenuImg> menuImgs = new ArrayList<>();
 	
 	public void updateMenu(MenuFormDto menuFormDto) {
 		this.menuNm = menuFormDto.getMenuNm();

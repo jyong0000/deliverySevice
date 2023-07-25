@@ -148,9 +148,11 @@ public class MenuController {
 		return "redirect:/";
 	}
 	
-	@DeleteMapping("/admin/menu/{menuId}/delete")
-	public @ResponseBody ResponseEntity deleteMenu(@PathVariable("menuId") Long menuId , Principal principal) {
+	@DeleteMapping(value = "/menu/{menuId}/delete")
+	public @ResponseBody ResponseEntity deleteMenu(@PathVariable("menuId") Long menuId , 
+			Principal principal) {
 		menuService.deleteMenu(menuId);
 		return new ResponseEntity<Long> (menuId, HttpStatus.OK);
 	}
+
 }

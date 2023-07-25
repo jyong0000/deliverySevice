@@ -27,6 +27,8 @@ public class MenuImg {
 	@JoinColumn(name = "menu_id")
 	private Menu menu;
 	
+	
+	
 	public void updateMenuImg(String menuOriImgName, String menuImgName, String menuImgUrl) {
 		this.menuOriImgName = menuOriImgName;
 		this.menuImgName = menuImgName;

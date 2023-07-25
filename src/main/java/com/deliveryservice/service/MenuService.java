@@ -85,7 +85,6 @@ public class MenuService {
 	public void deleteMenu(Long menuId) {
 		Menu menu = menuRepository.findById(menuId)
 					.orElseThrow(EntityNotFoundException::new);
-		
 		menuRepository.delete(menu);
 	}
 	

@@ -3,6 +3,11 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layouts/layout1}">
 
+<head>
+<meta name="_csrf" th:content="${_csrf.token}" />
+<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+</head>
+
 <th:block layout:fragment="css">
 	<style>
 		.fieldError {
@@ -108,7 +113,7 @@
     	$("#price").trigger("keyup"); 
     	
 		bindDomEvent(); //이벤트를 등록
-	});
+	}); 
 	
 	function deleteMenu(menuId){
 		const deleteConf = confirm("삭제하시겠습니까?");
@@ -130,7 +135,7 @@
 			dataType : "json",
 			cache : false,
 			success : function(result, status) {
-				location.href = '/menus';
+				location.href = '/';
 			},
 			error : function(jqXHR, status, error) {
 				if(jqXHR.status == '401') {
@@ -167,7 +172,7 @@
 	}
 	
 	//파일 첨부시 확장자가 이미지 파일인지 검사한다
-    function bindDomEvent(){
+     function bindDomEvent(){
         $(".custom-file-input").on("change", function() {
             var fileName = $(this).val().split("\\").pop();  //이미지 파일명
             var fileExt = fileName.substring(fileName.lastIndexOf(".")+1); // 확장자 추출
@@ -180,7 +185,7 @@
 
             $(this).siblings(".custom-file-label").html(fileName);
         });
-    }
+    } 
 	</script>
 </th:block>
 
