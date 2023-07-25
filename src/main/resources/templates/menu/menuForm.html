@@ -62,7 +62,7 @@
 
 							<div class="form-group row">
 								<div class="col-md-12">
-									<label th:for="menuDetail" class="text-black">상품 상세내용</label> 
+									<label th:for="menuDetail" class="text-black">메뉴 상세내용</label> 
                                     <textarea rows=10 class="form-control" th:field="*{menuDetail}" placeholder="메뉴 상세내용" id="floatingTextarea"></textarea>
                                     <p th:if="${#fields.hasErrors('menuDetail')}" th:errors="*{menuDetail}" class="fieldError">Incorrect Data</p>
 								</div>

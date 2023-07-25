@@ -23,7 +23,7 @@
 			<div class="row">
 				<div class="col-md-12 mb-0">
 					<a href="/">Home</a> <span class="mx-2 mb-0">/</span> <strong
-						class="text-black">상품관리</strong>
+						class="text-black">메뉴관리</strong>
 				</div>
 			</div>
 		</div>
@@ -34,17 +34,16 @@
 			<div class="row">
 
 				<div class="col-md-12">
-					<h2 class="h3 mb-3 text-black">상품관리</h2>
+					<h2 class="h3 mb-3 text-black">메뉴관리</h2>
 					<form th:action="@{'/admin/menus/' + ${menus.number}}"
 					method="get" th:object="${menus}">
 						<table class="table table-responsive-md">
 							<thead>
 								<tr>
 									<th scope="col">id</th>
-									<th scope="col">상품명</th>
+									<th scope="col">메뉴명</th>
 									<th scope="col">상태</th>
 									<th scope="col">등록자</th>
-									<th scope="col">등록일</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -71,7 +70,7 @@
 						     ◀ 1 2 3 4 5 ▶
 						     ◀ 6 7
 						-->
-		<!-- 			<nav
+				<nav
 					th:with="start=${(menus.number/maxPage)*maxPage + 1}
 			                 ,end=(${(menus.totalPages == 0) ? 1 : (start + (maxPage - 1) < menus.totalPages ? start + (maxPage - 1) : menus.totalPages)})"
 							aria-label="Page navigation example">
@@ -83,7 +82,7 @@
 								
 								<li class="page-item"
 									th:each="page: ${#numbers.sequence(start, end)}"
-									th:classappend="${menu.number eq page-1}?'active':''">
+									th:classappend="${menus.number eq page-1}?'active':''">
 									<a
 									class="page-link" th:inline="text"
 									th:onclick="'javascript:page(' + ${page - 1} +')'">[[${page}]]</a>
@@ -94,13 +93,13 @@
 									th:onclick="'javascript:page(' + ${menus.number + 1} +')'">다음</a>
 								</li>
 							</ul>
-						</nav> -->
+						</nav> 
 						
-		<!-- 				<div class="row" 
+		 		<!-- 		<div class="row" 
 						     th:object="${menuSearchDto}" style="height: 40px;">
 							<div class="col-lg-2"></div>
 							<div class="col-lg-5" style="display:flex;">
-								상품 등록일
+								메뉴 등록일
 								<select th:field="*{searchDateType}" class="form-control">
 									<option value="all">전체기간</option>
 									<option value="1d">1일</option>
@@ -108,13 +107,13 @@
 									<option value="1m">1개월</option>
 									<option value="6m">6개월</option>
 								</select>
-								상품판매 상태
-								<select th:field="*{searchSellStatus}" class="form-control">
+								메뉴 판매 상태
+								<select th:field="*{searchmenuStatus}" class="form-control">
 									<option value="">판매상태(전체)</option>
 									<option value="SELL">판매</option>
 									<option value="SOLD_OUT">품절</option>
 								</select>
-								상품명, 등록자 선택
+								메뉴명, 등록자 선택
 								<select th:field="*{searchBy}" class="form-control">
 									<option value="itemNm">상품명</option>
 									<option value="createdBy">등록자</option>

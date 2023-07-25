@@ -30,12 +30,19 @@ public class MenuService {
 	private final MenuImgRepository menuImgRepository;
 	
 	public Long saveMenu(MenuFormDto menuFormDto, List<MultipartFile> menuImgFileList) throws Exception{
+		
 		Menu menu = menuFormDto.createMenu();
 		menuRepository.save(menu);
 		
 		for(int i = 0; i<menuImgFileList.size(); i++) {
 			MenuImg menuImg = new MenuImg();
 			menuImg.setMenu(menu);
+			
+			if( i == 0 ) {
+				menuImg.setRepimgYn("Y");
+			} else{
+				menuImg.setRepimgYn("N");
+			}
 			
 			menuImgService.saveMenuImg(menuImg, menuImgFileList.get(i));
 			}

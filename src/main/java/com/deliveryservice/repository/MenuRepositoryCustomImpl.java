@@ -11,8 +11,10 @@ import org.thymeleaf.util.StringUtils;
 import com.deliveryservice.constant.MenuStatus;
 import com.deliveryservice.dto.MenuDto;
 import com.deliveryservice.dto.MenuSearchDto;
+import com.deliveryservice.dto.QMenuDto;
 import com.deliveryservice.entity.Menu;
 import com.deliveryservice.entity.QMenu;
+import com.deliveryservice.entity.QMenuImg;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Wildcard;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -61,9 +63,43 @@ public class MenuRepositoryCustomImpl implements MenuRepositoryCustom{
 						
 	}
 
+	private BooleanExpression menuNmLike(String searchQuery) {
+		return StringUtils.isEmpty(searchQuery) ?
+				null : QMenu.menu.menuNm.like("%" + searchQuery + "%");
+	}
+	
 	@Override
 	public Page<MenuDto> getMenuPage(MenuSearchDto menuSearchDto, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+		QMenu menu = QMenu.menu;
+		QMenuImg menuImg = QMenuImg.menuImg;
+		
+		List<MenuDto> content = queryFactory
+				.select(
+						new QMenuDto(
+								menu.id,
+								menu.menuNm,
+								menu.menuDetail,
+								menuImg.menuImgUrl,
+								menu.price
+								)
+						)
+				.from(menuImg)
+				.join(menuImg.menu, menu)
+				.where(menuNmLike(menuSearchDto.getSearchQuery()))
+				.orderBy(menu.id.desc())
+				.offset(pageable.getOffset())
+				.limit(pageable.getPageSize())
+				.fetch();
+		
+		long total = queryFactory
+				.select(Wildcard.count)
+				.from(menuImg)
+				.join(menuImg.menu, menu)
+				.where(menuImg.repimgYn.eq("Y"))
+				.where(menuNmLike(menuSearchDto.getSearchQuery()))
+				.fetchOne();
+				
+						
+		return new PageImpl<>(content, pageable, total);
 	}
 } 

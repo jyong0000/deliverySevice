@@ -43,8 +43,6 @@ public class MenuController {
 		return "/menu/menuShopList"; 
 	}
 	
-	
-	
 	//메뉴 상세페이지
 	@GetMapping(value ="/menu/{menuId}")
 	public String menuDtl(Model model, @PathVariable("menuId") Long menuId) {
@@ -75,6 +73,13 @@ public class MenuController {
 			return "menu/menuForm";
 		}
 		
+		try {
+			menuService.saveMenu(menuFormDto, menuImgfileList);
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("errorMessage", "메뉴 등록중 에러발생");
+			return "menu/menuForm";
+		}
 		
 		
 		return "redirect:/";
@@ -114,8 +119,9 @@ public class MenuController {
 	
 	//메뉴 수정
 	@PostMapping(value = "/admin/menu/{menuId}")
-	public String menuUpdate(@Valid MenuFormDto menuFormDto, Model model, BindingResult bindingResult,
-							@RequestParam("menuImgFile") List<MultipartFile> menuImgFileList) {
+	public String menuUpdate(@Valid MenuFormDto menuFormDto, Model model, 
+			BindingResult bindingResult,
+			@RequestParam("menuImgFile") List<MultipartFile> menuImgFileList) {
 		
 		if(bindingResult.hasErrors()) {
 			return "menu/menuForm";
