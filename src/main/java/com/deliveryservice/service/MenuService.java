@@ -82,6 +82,13 @@ public class MenuService {
 		return menu.getId();
 	}
 	
+	public void deleteMenu(Long menuId) {
+		Menu menu = menuRepository.findById(menuId)
+					.orElseThrow(EntityNotFoundException::new);
+		
+		menuRepository.delete(menu);
+	}
+	
 	@Transactional(readOnly = true)
 	public Page<Menu> getAdminMenuPage(MenuSearchDto menuSearchDto, Pageable pageable){
 		Page<Menu> menuPage = menuRepository.getAdminMenuPage(menuSearchDto, pageable);

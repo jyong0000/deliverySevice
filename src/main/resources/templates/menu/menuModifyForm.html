@@ -81,6 +81,9 @@
 							<div class="form-group">
 								<div class="col-md-12 d-flex justify-content-center">
 									<button type="button" onclick="beforeSubmit()" class="btn btn-primary mb-3" style="width:150px;">메뉴수정</button>
+									&nbsp;&nbsp;&nbsp;
+									<button type="button" class="btn btn-primary mb-3"
+										 th:value="${menuId}" onclick="deleteMenu(this.value)">삭제하기</button>
 								</div>
 							</div>
 
@@ -106,6 +109,41 @@
     	
 		bindDomEvent(); //이벤트를 등록
 	});
+	
+	function deleteMenu(menuId){
+		const deleteConf = confirm("삭제하시겠습니까?");
+		if(!deleteConf) return;
+		
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+		var url = "/menu/" + menuId + "/delete";
+		
+		
+		$.ajax({
+			url : url, //request URL
+			type : "DELETE", //전송방식
+			contentType : "application/json",
+			beforeSend : function(xhr) {
+				//데이터를 전송하기 전에 헤더에 csrf 값을 설정
+				xhr.setRequestHeader(header, token);
+			},
+			dataType : "json",
+			cache : false,
+			success : function(result, status) {
+				location.href = '/menus';
+			},
+			error : function(jqXHR, status, error) {
+				if(jqXHR.status == '401') {
+					alert('로그인 후 이용해주세요.');
+					location.href = '/users/login';
+				} else {
+					alert(jqXHR.responseText);
+				}
+			}
+		});
+	}
+	
+	
 	
 	//천단위 콤마찍는 함수
 	function inputNumberFormat(obj) {
