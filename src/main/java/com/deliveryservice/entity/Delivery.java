@@ -21,6 +21,6 @@ public class Delivery {
 	
 	@ManyToOne
 	@JoinColumn(name = "order_menu_id")
-	private OrderItem orderItem;
+	private OrderMenu orderMenu;
 	
 }
