@@ -34,7 +34,7 @@
 				<div class="col-md-6">
 					<div class="item-entry">
 						<a href="#" class="product-item md-height bg-gray d-block"> 
-						<img th:src="${menu.menuImgDtoList[0].menuimgUrl}" 
+						<img th:src="${menu.menuImgDtoList[0].menuImgUrl}" 
 						class="rounded repImg" th:alt="${menu.menuNm}">
 						</a>
 
@@ -70,9 +70,6 @@
 						</div>
 					</div>
 					<p th:if="${#strings.equals(menu.menuStatus, 'SELL')}">
-						<button type="button"
-						class="btn btn-light border border-primary btn-lg">장바구니
-						담기</button>
 						<button type="button" class="btn btn-primary btn-lg"
 						onclick="order()">주문하기</button>
 					</p>
@@ -100,8 +97,8 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div th:each="menuImg : ${menu.menuImgDtoList}" class="text-center">
-						<img th:if="${not #strings.isEmpty(menuImg.menuimgUrl)}"
-							th:src="${menuImg.menuimgUrl}" class="rounded mgb-15" width="800">
+						<img th:if="${not #strings.isEmpty(menuImg.menuImgUrl)}"
+							th:src="${menuImg.menuImgUrl}" class="rounded mgb-15" width="800">
 					</div>
 				</div>
 			</div>

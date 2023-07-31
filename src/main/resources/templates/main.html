@@ -63,7 +63,7 @@
 						<div class="col-md-12 block-3">
 							<div class="nonloop-block-3 owl-carousel">
 								<th:block th:each="menu, status:${menus}">
-									<div class="menu">
+									<div class="item">
 										<div class="item-entry">
 											<a th:href="'/menu/' + ${menu.id}"
 												class="product-item md-height bg-gray d-block"> <img
@@ -73,10 +73,9 @@
 											<h2 class="menu-title">
 												<a href="#">[[${menu.menuNm}]]</a>
 											</h2>
-											<strong class="item-price"> <del>[[${#numbers.formatInteger(menu.price
-													* 1.5, 0, 'COMMA')}]]원</del>
-												&nbsp;&nbsp;[[${#numbers.formatInteger(menu.price, 0,
-												'COMMA')}]]원
+											<strong class="item-price"> 
+											<del>[[${#numbers.formatInteger(menu.price * 1.5, 0, 'COMMA')}]]원</del>
+											&nbsp;&nbsp;[[${#numbers.formatInteger(menu.price, 0,'COMMA')}]]원
 											</strong>
 										</div>
 									</div>

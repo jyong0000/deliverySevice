@@ -58,7 +58,7 @@
 							</th:block>
 						</div>
 						<div class="card d-flex flex-row">
-							<div th:each="orderItem: ${order.orderMenuDtoList}" 
+							<div th:each="orderMenu: ${order.orderMenuDtoList}" 
 							class="d-flex mb-3" style="width: 90%">
 								<div class="repImgDiv">
 									<img th:src="${orderMenu.imgUrl}"
@@ -169,7 +169,7 @@
 				error : function(jqXHR, status, error) {
 					if(jqXHR.status == '401') {
 						alert('로그인 후 이용해주세요.');
-						location.href = '/members/login';
+						location.href = '/users/login';
 					} else {
 						alert(jqXHR.responseText);
 					}
@@ -205,7 +205,7 @@
 				error : function(jqXHR, status, error) {
 					if(jqXHR.status == '401') {
 						alert('로그인 후 이용해주세요.');
-						location.href = '/members/login';
+						location.href = '/users/login';
 					} else {
 						alert(jqXHR.responseText);
 					}
