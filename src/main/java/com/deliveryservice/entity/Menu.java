@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.deliveryservice.constant.MenuStatus;
 import com.deliveryservice.dto.MenuFormDto;
+import com.deliveryservice.execption.OutOfStockException;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -29,6 +30,9 @@ public class Menu extends BaseEntity{
 	private int price;
 	
 	@Column(nullable = false)
+	private int stockNumber;
+	
+	@Column(nullable = false)
 	private String menuDetail;
 	
 	@Enumerated(EnumType.STRING)
@@ -41,9 +45,27 @@ public class Menu extends BaseEntity{
 	public void updateMenu(MenuFormDto menuFormDto) {
 		this.menuNm = menuFormDto.getMenuNm();
 		this.price = menuFormDto.getPrice();
+		this.stockNumber = menuFormDto.getStockNumber();
 		this.menuDetail = menuFormDto.getMenuDetail();
 		this.menuStatus = menuFormDto.getMenuStatus();
 	}
 	
+	//재고를 감소시킨다.
+	public void removeStock(int stockNumber) {
+		int restStock = this.stockNumber - stockNumber; //남은 재고 수량
+		
+		if(restStock < 0) {
+			throw new OutOfStockException("상품의 재고가 부족합니다. "
+					+ "현재 재고수량: " + this.stockNumber);
+		}
+		
+		this.stockNumber = restStock; //남은 재고수량 반영
+	}
 	
-}
+	//재고 증가
+	public void addStock(int stockNumber) {
+		this.stockNumber += stockNumber;
+	}
+	 
+	}
+	

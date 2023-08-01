@@ -23,6 +23,9 @@ public class MenuFormDto {
 	@NotNull(message = "가격은 필수 입력입니다.")
 	private int price;
 	
+	@NotNull(message = "재고는 필수 입력입니다.")
+	private int stockNumber;
+	
 	@NotBlank(message = "상품 상세설명은 필수 입력입니다.")
 	private String menuDetail;
 	

@@ -32,6 +32,7 @@ public class OrderMenu extends BaseEntity{
 		orderMenu.setCount(count);
 		orderMenu.setOrderPrice(menu.getPrice());
 		
+		menu.removeStock(count);
 		return orderMenu;
 	}
 	
@@ -39,4 +40,7 @@ public class OrderMenu extends BaseEntity{
 		return orderPrice * count;
 	}
 	
+	public void cancel() {
+		this.getMenu().addStock(count);
+	}
 }
