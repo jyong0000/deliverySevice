@@ -102,7 +102,7 @@
    		</dependency>
 		<dependency>
 			<groupId>com.example</groupId>
-			<artifactId>shopmax</artifactId>
+			<artifactId>deliveryService</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
