@@ -46,7 +46,7 @@ public class MenuController {
 		model.addAttribute("menuSearchDto", menuSearchDto);
 		model.addAttribute("maxPage",5);
 		
-		return "/menu/menuShopList"; 
+		return "menu/menuShopList"; 
 	}
 	
 	//메뉴 상세페이지
@@ -61,7 +61,7 @@ public class MenuController {
 	@GetMapping(value = "/admin/menu/new")
 	public String menuForm(Model model) {
 		model.addAttribute("menuFormDto",new MenuFormDto());
-		return "/menu/menuForm";
+		return "menu/menuForm";
 	}
 	
 	
@@ -103,7 +103,7 @@ public class MenuController {
 		model.addAttribute("menuSearchDto", menuSearchDto);
 		model.addAttribute("maxPage", 5);
 		
-		return "/menu/menuMng";
+		return "menu/menuMng";
 		
 	}
 	

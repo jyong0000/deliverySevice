@@ -1,5 +1,6 @@
 package com.deliveryservice.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,7 +17,9 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 public class MenuImgService {
 
-	private String menuImgLocation = "C:/delivery/menu";
+	@Value("${itemImgLocation}")
+	private String itemImgLocation;
+	
 	private final MenuImgRepository menuImgRepository;
 	private final FileService fileService;
 	
@@ -26,7 +29,7 @@ public class MenuImgService {
 		String menuimgUrl = "";
 		
 		if(!StringUtils.isEmpty(menuOriImgName)) {
-			menuimgName = fileService.uploadFile(menuImgLocation,
+			menuimgName = fileService.uploadFile(itemImgLocation,
 					menuOriImgName, menuImgFile.getBytes());
 			menuimgUrl = "/images/menu/" + menuimgName;
 			
@@ -42,11 +45,11 @@ public class MenuImgService {
 									.orElseThrow(EntityNotFoundException::new);
 			
 			if(!StringUtils.isEmpty(savedMenuImg.getMenuImgName())) {
-				fileService.deleteFile(menuImgLocation + "/" + savedMenuImg.getMenuImgName());
+				fileService.deleteFile(itemImgLocation + "/" + savedMenuImg.getMenuImgName());
 			}
 			
 			String menuOriImgName = menuImgFile.getOriginalFilename();
-			String menuImgName = fileService.uploadFile(menuImgLocation, menuOriImgName, menuImgFile.getBytes());
+			String menuImgName = fileService.uploadFile(itemImgLocation, menuOriImgName, menuImgFile.getBytes());
 			String menuImgUrl = "/images/menu/" + menuImgName;
 			
 			savedMenuImg.updateMenuImg(menuOriImgName, menuImgName, menuImgUrl);
